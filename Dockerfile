@@ -12,11 +12,5 @@ RUN \
 COPY --from=gradle /home/app/build/libs/greetings-cloud-run-0.1-all.jar /home/app/server.jar
 WORKDIR /home/app
 RUN native-image -H:Name=greetings-cloud-run --no-server -cp server.jar com.arun.Application
-
-
-# Stage 3: Prepare Server
-FROM frolvlad/alpine-glibc
-RUN apk update && apk add libstdc++
 EXPOSE 8080
-COPY --from=graalvm /home/app/greetings-cloud-run .
 ENTRYPOINT ["./greetings-cloud-run"]
