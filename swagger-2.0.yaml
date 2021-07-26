@@ -1,0 +1,68 @@
+swagger: "2.0"
+info:
+  version: 0.0.0
+  title: title
+  description: description
+  termsOfService: terms
+  contact: 
+    name: Arun Kumar M
+    url: www.arun.com
+    email: arun@arun.com
+  license:
+    name: MIT
+    url: http://opensource.org/licenses/MIT
+paths:
+  /api/v1/greetings:
+    get:
+      summary: "Get all greetings"
+      operationId: getGreetings
+      description: Greetings from Hindi, Tamil, English and Spanish
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      responses:
+        200:
+          description: Get all greetings
+          schema:
+            type: object
+            properties: 
+              greetings:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                    language:
+                      type: string
+                      
+  /api/v1/greetings/{language}:
+    get:
+      summary: Get Greeting by Language
+      description: Get Greeting by Language
+      produces:
+        - application/json
+      consumes:
+        - application/json
+      parameters:
+        - in: path
+          name: language
+          required: true
+          type: string
+      responses:
+        200:
+          description: Get Greeting by Language
+          schema:
+            type: object
+            properties:
+              greeting:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  language:
+                    type: string
+                
+    
+    
